@@ -3,6 +3,8 @@
 #
 # See the file LICENSE included in this distribution for details.
 
+SCALA_VERSION=2.10
+
 ifeq ($(shell uname),Darwin)
 LIBEXT=dylib
 else
@@ -30,5 +32,5 @@ libscalaqlite.dylib: Sqlite3C.cc Sqlite3C.h
 		-L/opt/local/lib \
 		$< -lsqlite3
 
-Sqlite3C.h: ../../../target/scala-2.9.1/classes/org/srhea/scalaqlite/Sqlite3C.class
-	javah -classpath ../../../target/scala-2.9.1/classes org.srhea.scalaqlite.Sqlite3C
+Sqlite3C.h: ../../../target/scala-$(SCALA_VERSION)/classes/org/srhea/scalaqlite/Sqlite3C.class
+	javah -classpath ../../../target/scala-$(SCALA_VERSION)/classes org.srhea.scalaqlite.Sqlite3C
