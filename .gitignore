@@ -7,3 +7,4 @@ target
 reports
 lib_managed
 project/boot
+.log
