@@ -47,6 +47,8 @@ public class Sqlite3C {
     native static public int sqlite3_changes(long db);
 
     static {
-        System.loadLibrary("scalaqlite");
+        // Using Runtime.loadLibrary makes the calling class Sqlite3C instead of System,
+        // thus loading scalaqlite in the local class loader instead of the system class loader.
+        Runtime.getRuntime().loadLibrary("scalaqlite");
     }
 }
