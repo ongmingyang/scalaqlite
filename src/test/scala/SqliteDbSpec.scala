@@ -5,9 +5,9 @@
 
 package org.srhea.scalaqlite
 import org.scalatest.FlatSpec
-import org.scalatest.matchers.ShouldMatchers
+import org.scalatest.Matchers
 
-class SqliteDbSpec extends FlatSpec with ShouldMatchers {
+class SqliteDbSpec extends FlatSpec with Matchers {
     val db = new SqliteDb(":memory:")
 
     "CREATE TABLE" should "not throw any exceptions" in {
