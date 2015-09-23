@@ -3,7 +3,7 @@
 #
 # See the file LICENSE included in this distribution for details.
 
-SCALA_VERSION=2.10
+SCALA_VERSION=2.11
 
 ifeq ($(shell uname),Darwin)
 LIBEXT=dylib
