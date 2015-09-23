@@ -11,6 +11,10 @@ else
 LIBEXT=so
 endif
 
+ifndef JAVA_HOME
+JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-i386
+endif
+
 TARGET=libscalaqlite.$(LIBEXT)
 
 all: $(TARGET)
@@ -22,8 +26,8 @@ clean:
 
 libscalaqlite.so: Sqlite3C.cc Sqlite3C.h
 	g++ -O2 -o $@ -shared -Wl,-soname,libscalaqlite.so \
-	        -I/usr/lib/jvm/java-6-sun-1.6.0.26/include \
-	        -I/usr/lib/jvm/java-6-sun-1.6.0.26/include/linux \
+	        -I$(JAVA_HOME)/include \
+	        -I$(JAVA_HOME)/include/linux \
 		$< -static -lc -lsqlite3
 
 libscalaqlite.dylib: Sqlite3C.cc Sqlite3C.h
