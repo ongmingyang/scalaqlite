@@ -1,9 +1,13 @@
 name := "scalaqlite"
 
-organization := "org.srhea"
+organization := "com.meraki"
 
-version := "0.5-SNAPSHOT"
+version := "0.7-SNAPSHOT"
 
-scalaVersion := "2.9.1"
+scalaVersion := "2.11.7"
 
-libraryDependencies += "org.scalatest" %% "scalatest" % "1.7.2" % "test"
+libraryDependencies += "org.scalatest" %% "scalatest" % "2.2.4" % "test"
+
+scalacOptions in Test ++= Seq("-deprecation")
+
+testOptions in Test += Tests.Argument("-Djava.library.path=target/native")
