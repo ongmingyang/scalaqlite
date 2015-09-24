@@ -14,13 +14,6 @@
 
 package org.srhea.scalaqlite;
 
-import java.lang.reflect.Method;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.File;
-
 public class Sqlite3C {
     public static final int OK = 0;
     public static final int ERROR = 1;
@@ -54,21 +47,8 @@ public class Sqlite3C {
     native static public int sqlite3_changes(long db);
 
     static {
-        try {
-            Method m = ClassLoader.class.getDeclaredMethod("findLibrary", String.class);
-            m.setAccessible(true);
-            String path = (String) m.invoke(Sqlite3C.class.getClassLoader(), "scalaqlite");
-            BufferedReader fr = new BufferedReader(new FileReader(path));
-            File tf = File.createTempFile("libscalaqlite", ".so");
-            BufferedWriter fw = new BufferedWriter(new FileWriter(tf));
-            int c = fr.read();
-            while (c != -1) {
-                fw.write(c);
-                c = fr.read();
-            }
-            fr.close();
-            fw.close();
-            System.load(path);
-        } catch (Exception ex) { throw new RuntimeException(ex); }
+        // Using Runtime.loadLibrary makes the calling class Sqlite3C instead of System,
+        // thus loading scalaqlite in the local class loader instead of the system class loader.
+        Runtime.getRuntime().loadLibrary("scalaqlite");
     }
 }

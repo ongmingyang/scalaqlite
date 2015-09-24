@@ -4,9 +4,9 @@ organization := "com.meraki"
 
 version := "0.7-RC2"
 
-scalaVersion := "2.11.1"
+scalaVersion := "2.11.7"
 
-libraryDependencies += "org.scalatest" %% "scalatest" % "2.1.4" % "test"
+libraryDependencies += "org.scalatest" %% "scalatest" % "2.2.4" % "test"
 
 scalacOptions in Test ++= Seq("-deprecation")
 
